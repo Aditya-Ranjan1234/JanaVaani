@@ -8,13 +8,36 @@
 
 ## 📜 Problem Statement
 
-Large sections of India’s population still rely on feature phones and have limited digital literacy. They struggle to:
+While **over a billion Indians own a mobile phone**, **most do not have a smartphone, reliable data, or the digital literacy** needed to navigate government portals or mobile apps.
 
-* Discover and apply for relevant **government welfare schemes**
-* Lodge **civic complaints** (garbage, road damage, water issues, etc.)
-* Overcome **language & literacy barriers** when interacting with existing portals
+Meanwhile, India’s welfare ecosystem is **highly fragmented**:
 
-A simple voice interface—accessible from **any phone**—can bridge this divide.
+* A single city such as **Bengaluru has 40+ helpline numbers** for different civic services.
+* Farmers rarely know **which scheme** fits their situation or **where to apply**.
+* In distress, citizens are forced to **search, wait, or abandon** their request due to bureaucracy.
+
+This results in:
+
+* **Under-utilised welfare funds**
+* **Unreported civic issues**
+* **Low trust in public institutions**
+
+> Despite hundreds of portals and helplines, **there is no unified, voice-first access point** for citizens to seek help, discover schemes, or file complaints.
+
+## 🌟 Vision Statement
+
+**JanaVaani** envisions a **single-call, AI-powered voice gateway to governance** for every Indian — urban or rural, literate or not.
+
+> “If you can speak, you can get help.”
+
+The platform will:
+
+* **Listen** to any citizen via a plain phone call.
+* **Understand** their language, intent and location using LLMs.
+* **Guide** them to the correct scheme, solution or authority — instantly.
+* **Report** civic issues on their behalf and follow-up with SMS or WhatsApp.
+
+By making government services **voice-first and AI-driven**, JanaVaani delivers **access, clarity and action** without requiring an app, internet or technical know-how.
 
 ---
 
