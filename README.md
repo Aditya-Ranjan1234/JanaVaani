@@ -56,6 +56,18 @@ The entire workflow happens inside a single phone-call—no smartphone or app re
 
 ## 🧩 Key Features
 
+### Multi-Agent Orchestration (NEW!)
+
+JanaVaani now routes every utterance to the right **domain agent**:
+
+| Agent | Triggers | What it does |
+| ----- | -------- | ------------ |
+| 🌾 **AgricultureAgent** | Mentions of crops, irrigation, farming | Recommends welfare schemes, subsidies & insurance |
+| 🏛️ **CivicAgent** | Potholes, garbage, water leak, etc. | Captures location ➜ logs complaint to civic authority |
+| 🚨 **EmergencyAgent** | Fire, accident, violence, etc. | Auto–dials police / ambulance / fire and sends caller an SMS |
+
+An `AgentOrchestrator` analyses keywords and seamlessly forwards the call to the right agent.
+
 | Module | Purpose |
 | ------ | ------- |
 | 🗣️ Voice Conversation | Bi-directional speech via Twilio Voice |
@@ -70,6 +82,17 @@ The entire workflow happens inside a single phone-call—no smartphone or app re
 ---
 
 ## ⚙️ Tech Stack
+
+| Layer | Tech | Notes |
+| ----- | ---- | ----- |
+| Agent Framework | Custom Python package (`agents/`) | Orchestrator + domain agents |
+| Telephony | **Twilio Voice & SMS** | Voice flow + SMS confirmations |
+| Backend | **Flask (Python)** | Webhooks + agent invocation |
+| LLM | **Groq API – Mixtral-8x7B** | Natural language understanding |
+| STT | **OpenAI Whisper (local)** | Speech → text |
+| TTS | **Coqui TTS** / **pyttsx3** | Text → speech |
+| Data | **CSV / SQLite** | Schemes & call logs |
+| DevOps | **ngrok / Render** | Tunnels & hosting |
 
 | Layer | Tech | Notes |
 | ----- | ---- | ----- |
@@ -102,6 +125,18 @@ flowchart TD
 ---
 
 ## 📂 Repository Structure
+
+```text
+├── agents/
+│   ├── __init__.py
+│   ├── base.py               # Abstract agent class
+│   ├── orchestrator.py       # Keyword router
+│   ├── agriculture/          # AgricultureAgent
+│   ├── civic/                # CivicAgent
+│   └── emergency/            # EmergencyAgent
+│       └── __init__.py
+├── app.py                    # Flask entry-point & Twilio endpoints
+```
 
 ```text
 ├── app.py              # Flask entry-point & Twilio endpoints

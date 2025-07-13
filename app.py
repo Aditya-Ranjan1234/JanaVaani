@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 from stt_whisper import transcribe_audio
 from groq_agent import get_groq_response
+from agents.orchestrator import AgentOrchestrator
 from tts import synthesize_speech
 from scheme_finder import find_schemes
 from translator import translate_text
@@ -47,7 +48,8 @@ def process_speech():
         return str(vr)
 
     # Process via LLM and scheme finder
-    response_text = handle_conversation_logic(transcript)
+    from_number = request.values.get("From")
+    response_text = handle_conversation_logic(transcript, caller_number=from_number)
 
     # TTS generation
     audio_path = synthesize_speech(response_text)
@@ -68,21 +70,26 @@ def process_speech():
     return str(vr)
 
 
-def handle_conversation_logic(user_text: str) -> str:
+orchestrator = AgentOrchestrator()
+
+def handle_conversation_logic(user_text: str, caller_number: str | None = None) -> str:
     """Core logic to decide reply using Groq & scheme database."""
     # Translate to English for LLM if required (assume mixed languages supported)
+        # Context passed to agents
+    context = {"caller_number": caller_number}
+    agent_reply = orchestrator.route(user_text, context)
+    if agent_reply:
+        return agent_reply
+
+    # Fallback to generic LLM flow if orchestrator did not handle
     user_en = translate_text(user_text, target_language="en")
-
     llm_reply = get_groq_response(user_en)
-
-    # Augment reply with scheme suggestions
+    # Scheme suggestion on top (optional)
     schemes = find_schemes(user_en)
     if schemes:
         scheme_lines = [f"- {row['Scheme']}: {row['Description']} (Contact: {row['Contact']})" for row in schemes]
-        llm_reply += "\n\nBased on your issue, you may find these government schemes useful:\n" + "\n".join(scheme_lines)
-
-    # Translate back to user language (rudimentary detection)
-    final_reply = translate_text(llm_reply, target_language="hi")  # Default to Hindi for demo
+        llm_reply += "\n\nYou may also find these government schemes useful:\n" + "\n".join(scheme_lines)
+    final_reply = translate_text(llm_reply, target_language="hi")
     return final_reply
 
 
