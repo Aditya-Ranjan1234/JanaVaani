@@ -1,0 +1,74 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+*.dylib
+
+# Distribution / packaging
+.Python
+build/
+dist/
+.eggs/
+*.egg-info/
+*.egg
+
+# Virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+*.cover
+*.py,cover
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# pyenv
+.python-version
+
+# mypy
+.mypy_cache/
+.dmypy.json
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# macOS & Windows clutter
+.DS_Store
+Thumbs.db
+
+# dotenv environment files
+.env
+.env.*
+
+# Logs
+audit.log
+*.log
+logs/
+
+# Twilio voice recordings or temp media
+recordings/
+
+# SQLite / CSV caches
+*.sqlite3
+*.db
+
+# Ngrok / tunnel config
+.ngrok*
+
+# Misc cache
+.cache/
